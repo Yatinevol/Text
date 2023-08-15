@@ -2,10 +2,10 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
-// import About from "./components/About";
+import About from "./components/About";
 import React, { useState } from "react";
 import Alert from "./components/Alert";
-// import { BrowserRouter, Routes, Route, } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
 
 function App() {
@@ -27,34 +27,33 @@ function App() {
       setMode("dark");
       document.body.style.backgroundColor = "#2c2c2c";
       showalert("Dark Mode has been enabled", "success");
-      document.title = "TextManipulator - Dark Mode";
+      // document.title = "TextManipulator - Dark Mode";
     } else {
       setMode("light");
       document.body.style.backgroundColor = "white";
       showalert("Light Mode has been enabled", "success");
-      document.title = "TextManipulator - Light Mode";
+      // document.title = "TextManipulator - Light Mode";
     }
   };
   return (
     <>
-    {/* <BrowserRouter> */}
+    <HashRouter>
       <Navbar title="TextManipulator" mode={mode} toggleMode={toggleMode} />
       <Alert alert={alert} />
 
       <div className="container">
       
-      {/* <Routes> */}
-      {/* <Route exact path="/about" element={<About />}></Route> */}
-        {/* <Route exact path="/" element={ */}
-        <TextForm  showalert={showalert} heading="Enter the text below to analyze" mode={mode}  />
-         {/* }>
-        </Route> */}
-          
-      {/* </Routes> */}
+      <Routes>
+      <Route exact path="/about" element={<About  mode={mode}/>}></Route>
+        <Route exact path="/" element={
+    <TextForm  showalert={showalert} heading="Try TextManipulator - Word Counter, Character Counter" 
+        mode={mode}/>
+         }> </Route>
+      </Routes>
 
-        
+   
       </div>
-    {/* </BrowserRouter> */}
+    </HashRouter>
     </>
   );
 }
